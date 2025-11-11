@@ -9,12 +9,16 @@ import multer from "multer";
 import bodyParser from "body-parser";
 
 const app = express();
-const PORT = process.env.PORT || 4000;
 
 dotenv.config();
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+
+// HEALTH CHECK ROUTE (Test the base URL: your-app-url.vercel.app/)
+app.get("/", (req, res) => {
+  res.status(200).send("Blog Backend API is running successfully.");
+});
 
 // TO CONNECT OUR DB
 main().catch((err) => console.log(err));
@@ -44,11 +48,11 @@ const upload = multer({ storage: storage });
 app.post("/api/upload", upload.single("file"), (req, res) => {
   res.status(200).json("File has been uploaded");
 });
+
+// ROUTING MIDDLEWARE
 app.use("/api/auth", router);
 app.use("/api/users", userRoute);
 app.use("/api/post", postRoute);
 app.use("/api/categories", catRoute);
 
-app.listen(PORT, () => {
-  console.log(`Backend is running on PORT ${PORT}`);
-});
+export default app;
