@@ -1,5 +1,5 @@
 import express from "express";
-import { Category } from "../models/category.ts";
+import { Category } from "../models/category.js";
 
 import bodyParser from "body-parser";
 
@@ -25,9 +25,6 @@ router.post("/create", async (req, res) => {
 router.get("/all", async (req, res) => {
   try {
     const category = await CategoryModel.find();
-    // if (!category || typeof category !== "string") {
-    //   return res.status(400).json("Wrong credentials!");
-    // }
     res.status(200).json(category);
   } catch (err) {
     res.status(500).json(err);

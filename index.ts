@@ -1,10 +1,10 @@
 import express from "express";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
-import router from "./routes/auth.ts";
-import userRoute from "./routes/user.ts";
-import postRoute from "./routes/post.ts";
-import catRoute from "./routes/category.ts";
+import router from "./routes/auth.js";
+import userRoute from "./routes/user.js";
+import postRoute from "./routes/post.js";
+import catRoute from "./routes/category.js";
 import multer from "multer";
 import bodyParser from "body-parser";
 

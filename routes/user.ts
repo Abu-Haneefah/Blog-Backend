@@ -1,6 +1,6 @@
 import express from "express";
-import { User } from "../models/users.ts";
-import { Post } from "../models/post.ts";
+import { User } from "../models/users.js";
+import { Post } from "../models/post.js";
 import bodyParser from "body-parser";
 import bcrypt from "bcrypt";
 

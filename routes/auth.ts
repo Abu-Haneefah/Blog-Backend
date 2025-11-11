@@ -1,5 +1,5 @@
 import express from "express";
-import { User } from "../models/users.ts";
+import { User } from "../models/users.js";
 import bodyParser from "body-parser";
 import bcrypt from "bcrypt";
 
