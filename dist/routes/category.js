@@ -1,11 +1,16 @@
-import express from "express";
-import { Category } from "../models/category.js";
-import bodyParser from "body-parser";
-const app = express();
-const CategoryModel = Category;
-const router = express.Router();
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = __importDefault(require("express"));
+const category_js_1 = require("../models/category.js");
+const body_parser_1 = __importDefault(require("body-parser"));
+const app = (0, express_1.default)();
+const CategoryModel = category_js_1.Category;
+const router = express_1.default.Router();
+app.use(body_parser_1.default.urlencoded({ extended: true }));
+app.use(body_parser_1.default.json());
 // CREATE NEW CATEGORIES
 router.post("/create", async (req, res) => {
     const newCat = new CategoryModel(req.body);
@@ -26,4 +31,4 @@ router.get("/all", async (req, res) => {
         res.status(500).json(err);
     }
 });
-export default router;
+exports.default = router;

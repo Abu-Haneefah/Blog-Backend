@@ -1,20 +1,25 @@
-import express from "express";
-import { User } from "../models/users.js";
-import { Post } from "../models/post.js";
-import bodyParser from "body-parser";
-import bcrypt from "bcrypt";
-const app = express();
-const UsersModel = User;
-const PostModel = Post;
-const router = express.Router();
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = __importDefault(require("express"));
+const users_js_1 = require("../models/users.js");
+const post_js_1 = require("../models/post.js");
+const body_parser_1 = __importDefault(require("body-parser"));
+const bcrypt_1 = __importDefault(require("bcrypt"));
+const app = (0, express_1.default)();
+const UsersModel = users_js_1.User;
+const PostModel = post_js_1.Post;
+const router = express_1.default.Router();
+app.use(body_parser_1.default.urlencoded({ extended: true }));
+app.use(body_parser_1.default.json());
 // UPDATE USERS
 router.put("/:id", async (req, res) => {
     if (req.body.userId === req.params.id) {
         if (req.body.password) {
-            const salt = await bcrypt.genSalt(10);
-            req.body.password = await bcrypt.hash(req.body.password, salt);
+            const salt = await bcrypt_1.default.genSalt(10);
+            req.body.password = await bcrypt_1.default.hash(req.body.password, salt);
         }
         try {
             const updatedUser = await UsersModel.findByIdAndUpdate(req.params.id, {
@@ -66,4 +71,4 @@ router.get("/:id", async (req, res) => {
         res.status(500).json(err);
     }
 });
-export default router;
+exports.default = router;

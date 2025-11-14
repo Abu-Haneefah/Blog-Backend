@@ -1,12 +1,17 @@
-import express from "express";
-import { Post } from "../models/post.js";
-import bodyParser from "body-parser";
-const app = express();
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = __importDefault(require("express"));
+const post_js_1 = require("../models/post.js");
+const body_parser_1 = __importDefault(require("body-parser"));
+const app = (0, express_1.default)();
 // const UsersModel = User;
-const PostModel = Post;
-const router = express.Router();
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
+const PostModel = post_js_1.Post;
+const router = express_1.default.Router();
+app.use(body_parser_1.default.urlencoded({ extended: true }));
+app.use(body_parser_1.default.json());
 // CREATE NEW POST
 router.post("/create", async (req, res) => {
     const newPost = new PostModel(req.body);
@@ -99,4 +104,4 @@ router.get("/", async (req, res) => {
         res.status(500).json(err);
     }
 });
-export default router;
+exports.default = router;
