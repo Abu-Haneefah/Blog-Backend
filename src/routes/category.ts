@@ -1,5 +1,5 @@
 import express from "express";
-import { Category } from "../models/category.js";
+import { Category } from "../../models/category.js";
 
 import bodyParser from "body-parser";
 
